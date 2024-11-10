@@ -22,14 +22,6 @@ namespace TestMvc.Controllers
             _productService = productService;
         }
 
-        private IOrganizationService GetCrmService()
-        {
-            // Retrieve the connection string from the web.config
-            string connectionString = ConfigurationManager.ConnectionStrings["CrmConnection"].ConnectionString;
-            CrmServiceClient crmServiceClient = new CrmServiceClient(connectionString);
-            return crmServiceClient.OrganizationServiceProxy;
-        }
-
         public ActionResult Index()
         {
             var products = _productService.GetAllProductsAsync();

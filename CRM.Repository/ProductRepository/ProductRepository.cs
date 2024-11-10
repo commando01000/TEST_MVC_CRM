@@ -1,5 +1,5 @@
 ﻿using CRM.Repository.Helpers;
-using CRM.Repository.Product;
+using CRM.Repository.ProductRepository;
 using Microsoft.Xrm.Sdk;
 using System;
 using System.Collections.Generic;

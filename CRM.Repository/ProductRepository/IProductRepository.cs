@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CRM.Repository.Product
+namespace CRM.Repository
 {
     public interface IProductRepository
     {

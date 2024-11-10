@@ -1,7 +1,6 @@
 using CRM.BusinessLayer.Product;
 using CRM.Repository;
 using CRM.Repository.Helpers;
-using CRM.Repository.Product;
 using CRM.Repository.ProductRepository;
 using Microsoft.Xrm.Sdk;
 using System;
@@ -9,6 +8,7 @@ using System.Web.Mvc;
 using Unity;
 using Unity.AspNet.Mvc;
 using Unity.Lifetime;
+using CRM.BusinessLayer.ProductService;
 
 namespace TEST_MVC_CRM
 {

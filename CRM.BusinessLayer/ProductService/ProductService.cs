@@ -1,5 +1,5 @@
-﻿using CRM.Repository;
-using CRM.Repository.Product;
+﻿using CRM.BusinessLayer.Product;
+using CRM.Repository;
 using Microsoft.Crm.Sdk.Messages;
 using Microsoft.Xrm.Sdk;
 using System;
@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CRM.BusinessLayer.Product
+namespace CRM.BusinessLayer.ProductService
 {
     public class ProductService : IProductService
     {

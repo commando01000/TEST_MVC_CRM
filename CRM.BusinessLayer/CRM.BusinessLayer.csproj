@@ -128,8 +128,8 @@
     <Compile Include="Helpers\Enums.cs" />
     <Compile Include="Helpers\Utilities.cs" />
     <Compile Include="Helpers\XrmExtensions.cs" />
-    <Compile Include="Product\IProductService.cs" />
-    <Compile Include="Product\ProductService.cs" />
+    <Compile Include="ProductService\IProductService.cs" />
+    <Compile Include="ProductService\ProductService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -142,5 +142,6 @@
       <Name>CRM.Repository</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
