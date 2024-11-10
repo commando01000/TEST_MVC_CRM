@@ -45,7 +45,7 @@ namespace CRM.BusinessLayer.StockMovementService
                     ProductName = stockMovement.GetAttributeValue<string>("initiumc_productname"),
                     CurrentStock = stockMovement.GetAttributeValue<int>("initiumc_currentstock")
                 };
-                
+
                 stockMovements.Add(new StockMovement
                 {
                     Id = stockMovement.GetAttributeValue<Guid>("initiumc_stockmovementid"),
