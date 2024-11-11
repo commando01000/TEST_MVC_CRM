@@ -125,12 +125,16 @@
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="App_Start\UnityMvcActivator.cs" />
     <Compile Include="BasePlugin.cs" />
+    <Compile Include="Dtos\ProductModelDto.cs" />
+    <Compile Include="Dtos\StockMovementDto.cs" />
     <Compile Include="Helpers\Enums.cs" />
     <Compile Include="Helpers\Utilities.cs" />
     <Compile Include="Helpers\XrmExtensions.cs" />
     <Compile Include="ProductService\IProductService.cs" />
     <Compile Include="ProductService\ProductService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StockMovementService\IStockMovementService.cs" />
+    <Compile Include="StockMovementService\StockMovementService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

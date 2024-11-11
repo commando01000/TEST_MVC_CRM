@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CRM.Repository.Models
+namespace CRM.BusinessLayer.Dtos
 {
-    public class StockMovement
+    public class StockMovementDto
     {
         public Guid Id { get; set; }
         public Guid ProductId { get; set; }
-        public ProductModel Product { get; set; }
+        public string ProductName { get; set; }
         public int Quantity { get; set; }
         public DateTime? Date { get; set; }
         public int MovementType { get; set; }

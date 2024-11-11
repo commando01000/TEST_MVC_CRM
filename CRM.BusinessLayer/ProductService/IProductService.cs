@@ -1,4 +1,5 @@
-﻿using CRM.Repository;
+﻿using CRM.BusinessLayer.Dtos;
+using CRM.Repository;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -12,7 +13,7 @@ namespace CRM.BusinessLayer.Product
     {
         //read only list
         List<ProductModel> GetAllProductsAsync();
-        ProductModel GetProductByIdAsync(Guid id);
+        ProductModelDto GetProductByIdAsync(Guid id);
         ProductModel CreateProductAsync(ProductModel product);
     }
 }

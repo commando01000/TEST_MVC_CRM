@@ -1,16 +1,16 @@
-﻿using System;
+﻿using CRM.Repository;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Web;
 
-namespace CRM.Repository.Models
+namespace TEST_MVC_CRM.Models
 {
-    public class StockMovement
+    public class StockMovementViewModel
     {
         public Guid Id { get; set; }
-        public Guid ProductId { get; set; }
-        public ProductModel Product { get; set; }
+        public Guid? ProductId { get; set; }
+        public string ProductName { get; set; }
         public int Quantity { get; set; }
         public DateTime? Date { get; set; }
         public int MovementType { get; set; }

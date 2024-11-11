@@ -11,7 +11,7 @@ using System.Xml.Linq;
 
 namespace CRM.Repository.StockMovementService
 {
-    public class StockMovementRepository : BasePlugin, IStockMovement
+    public class StockMovementRepository : BasePlugin, IStockMovementRepository
     {
         public StockMovementRepository()
         {
@@ -19,7 +19,7 @@ namespace CRM.Repository.StockMovementService
         }
         public void Add(Entity stockMovement)
         {
-            throw new NotImplementedException();
+            _Service.Create(stockMovement);
         }
 
         public void Delete(Entity stockMovement)
@@ -27,9 +27,23 @@ namespace CRM.Repository.StockMovementService
             throw new NotImplementedException();
         }
 
-        public Entity Get(int id)
+        public Entity Get(Guid id)
         {
-            throw new NotImplementedException();
+            string fetchXml = $@"
+                <fetch>
+                <entity name='initiumc_stockmovement'>
+                <attribute name='initiumc_date' />
+                <attribute name='initiumc_quantity' />
+                <attribute name='initiumc_relatedproduct' />
+                <attribute name='initiumc_movementtype' />
+                <attribute name='initiumc_stockmovementid' />
+                <filter>
+                <condition attribute='initiumc_stockmovement_id' operator='eq' value='{id}' />
+                </filter>
+                </entity>
+                </fetch>";
+
+            return XrmExtensions.Fetch(_Service, fetchXml);
         }
 
         public DataCollection<Entity> GetAll()

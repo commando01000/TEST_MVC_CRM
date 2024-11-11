@@ -9,6 +9,8 @@ using Unity;
 using Unity.AspNet.Mvc;
 using Unity.Lifetime;
 using CRM.BusinessLayer.ProductService;
+using CRM.BusinessLayer.StockMovementService;
+using CRM.Repository.StockMovementService;
 
 namespace TEST_MVC_CRM
 {
@@ -24,6 +26,8 @@ namespace TEST_MVC_CRM
             // Register services
             container.RegisterType<IProductRepository, ProductRepository>();
             container.RegisterType<IProductService, ProductService>();
+            container.RegisterType<IStockMovementService, StockMovementService>();
+            container.RegisterType<IStockMovementRepository, StockMovementRepository>();
 
             // Set the dependency resolver for MVC
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));

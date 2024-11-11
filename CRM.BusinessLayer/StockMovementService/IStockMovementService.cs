@@ -1,4 +1,5 @@
-﻿using CRM.Repository.Models;
+﻿using CRM.BusinessLayer.Dtos;
+using CRM.Repository.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,10 +10,10 @@ namespace CRM.BusinessLayer.StockMovementService
 {
     public interface IStockMovementService
     {
-        List<StockMovement> GetAllStockMovementsAsync();
-        StockMovement GetStockMovementByIdAsync(Guid id);
-        void AddStockMovementAsync(StockMovement stockMovement);
-        void UpdateStockMovementAsync(StockMovement stockMovement);
-        void DeleteStockMovementAsync(StockMovement stockMovement);
+        List<StockMovementDto> GetAllStockMovementsAsync();
+        StockMovementDto GetStockMovementByIdAsync(Guid id);
+        void AddStockMovementAsync(StockMovementDto stockMovement);
+        void UpdateStockMovementAsync(StockMovementDto stockMovement);
+        void DeleteStockMovementAsync(StockMovementDto stockMovement);
     }
 }

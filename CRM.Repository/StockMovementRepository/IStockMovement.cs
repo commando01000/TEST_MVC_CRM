@@ -14,7 +14,7 @@ namespace CRM.Repository.StockMovementService
         void Add(Entity stockMovement);
         void Update(Entity stockMovement);
         void Delete(Entity stockMovement);
-        Entity Get(int id);
+        Entity Get(Guid id);
         DataCollection<Entity> GetAll();
     }
 }

@@ -1,4 +1,5 @@
-﻿using CRM.BusinessLayer.Product;
+﻿using CRM.BusinessLayer.Dtos;
+using CRM.BusinessLayer.Product;
 using CRM.Repository;
 using Microsoft.Crm.Sdk.Messages;
 using Microsoft.Xrm.Sdk;
@@ -22,7 +23,18 @@ namespace CRM.BusinessLayer.ProductService
 
         public ProductModel CreateProductAsync(ProductModel product)
         {
-            throw new NotImplementedException();
+            try
+            {
+                Entity productEntity = new Entity("initiumc_product_ss");
+                productEntity["initiumc_productname"] = product.ProductName;
+                productEntity["initiumc_currentstock"] = product.CurrentStock;
+                _productRepository.CreateProductAsync(productEntity);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            return product;
         }
 
         public List<ProductModel> GetAllProductsAsync()
@@ -43,9 +55,16 @@ namespace CRM.BusinessLayer.ProductService
             return products;
         }
 
-        public ProductModel GetProductByIdAsync(Guid id)
+        public ProductModelDto GetProductByIdAsync(Guid id)
         {
-            throw new NotImplementedException();
+            var product = _productRepository.GetProductByIdAsync(id);
+            ProductModelDto productModelDto = new ProductModelDto()
+            {
+                Id = product.Id,
+                ProductName = product.GetAttributeValue<string>("initiumc_productname"),
+                CurrentStock = product.GetAttributeValue<int>("initiumc_currentstock"),
+            };
+            return productModelDto;
         }
     }
 }

@@ -18,7 +18,8 @@ namespace CRM.Repository.ProductRepository
         }
         public Entity CreateProductAsync(Entity product)
         {
-            throw new NotImplementedException();
+            _Service.Create(product);
+            return product;
         }
 
         public DataCollection<Entity> GetAllProductsAsync()
