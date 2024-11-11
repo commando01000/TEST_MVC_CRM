@@ -89,6 +89,10 @@ namespace TEST_MVC_CRM.Controllers
                     ProductName = Product.ProductName,
                 };
 
+                if (Product.CurrentStock < SmDto.Quantity && SmDto.MovementType == 0)
+                {
+                    return Json(new { ErrorMessage = "Insufficient stock quantity." });
+                }
                 _stockMovementService.AddStockMovementAsync(SmDto);
 
                 return RedirectToAction("Index");

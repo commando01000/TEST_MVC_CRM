@@ -63,8 +63,8 @@
                     <div class="mb-3">
                         <label for="MovementType" class="form-label">Movement Type</label>
                         <select class="form-control" id="MovementType" name="MovementType">
-                            <option value="0">In</option>
-                            <option value="1">Out</option>
+                            <option value="1">In</option>
+                            <option value="0">Out</option>
                         </select>
                     </div>
                     <div class="modal-footer">
@@ -78,7 +78,7 @@
 
 
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
     $(document).ready(function () {
         $('#createForm').submit(function (e) {
@@ -89,10 +89,19 @@
                 type: 'POST',
                 data: $(this).serialize(),
                 success: function (result) {
-                    // Close the modal
-                    $('#createModal').modal('hide');
-                    // Optionally reload or refresh the table to show the new entry
-                    location.reload(); // Reloads the page to show updated data
+                    if (result.ErrorMessage) {
+                        Swal.fire({
+                            icon: "error",
+                            title: "Oops...",
+                            text: result.ErrorMessage,
+                        });
+                    }
+                    else {
+                        // Close the modal
+                        $('#createModal').modal('hide');
+                        // Optionally reload or refresh the table to show the new entry
+                        location.reload(); // Reloads the page to show updated data
+                    }
                 },
                 error: function (xhr, status, error) {
                     console.error("Error occurred: " + error);
