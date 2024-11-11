@@ -50,7 +50,7 @@
             <form id="createForm" method="post">
                 <div class="modal-body">
                     <div class="mb-3">
-                        @Html.DropDownList("ProductId", (IEnumerable<SelectListItem>)ViewBag.AllProducts, "-- Select Product --", new { @class = "form-control" })
+                        @Html.DropDownList("ProductId", (IEnumerable<SelectListItem>)ViewBag.AllProducts, "-- Select Product --", new { @class = "form-control", @id = "ProductId" })
                     </div>
                     <div class="mb-3">
                         <label for="Quantity" class="form-label">Quantity</label>
@@ -76,14 +76,60 @@
     </div>
 </div>
 
-
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
+    function ValidateQuantity(QtyRequested) {
+        if (QtyRequested) {
+            console.log("validate Qty: " + QtyRequested);
+            var productId = $('#ProductId').val();
+            console.log("Product ID: " + productId);
+
+            // AJAX request to get product by ID
+            $.ajax({
+                url: '@Url.Action("GetProductById", "Product")',
+                type: 'GET',
+                data: { id: productId }, // Pass the ProductId as a parameter
+                success: function (result) {
+                    if (result.ErrorMessage) {
+                        console.log("Error: " + result.ErrorMessage);
+                    } else {
+                        console.log("Product retrieved successfully", result);
+                        if (QtyRequested > result.CurrentStock) {
+                            console.log("Error: " + "The quantity exceeded the limit !");
+                            Swal.fire({
+                                icon: "error",
+                                title: "Oops... the quantity exceeded the limit !",
+                                text: result.ErrorMessage,
+                            });
+                        }
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error("Error occurred: " + error);
+                    Swal.fire({
+                        icon: "error",
+                        title: "Oops...",
+                        text: error,
+                    });
+                }
+            });
+        } else {
+            console.log('No Quantity Entered');
+        }
+    }
+
     $(document).ready(function () {
+        $('#Quantity').change(function () {
+            var qty = $(this).val();
+            console.log("Quantity changed: " + qty);
+            ValidateQuantity(qty);
+        });
+
         $('#createForm').submit(function (e) {
             e.preventDefault(); // Prevent the default form submission
-            console.log("Submitted !!!!")
+            console.log("Form Submitted");
+
             $.ajax({
                 url: '@Url.Action("Create", "StockMovement")',
                 type: 'POST',
@@ -95,11 +141,8 @@
                             title: "Oops...",
                             text: result.ErrorMessage,
                         });
-                    }
-                    else {
-                        // Close the modal
+                    } else {
                         $('#createModal').modal('hide');
-                        // Optionally reload or refresh the table to show the new entry
                         location.reload(); // Reloads the page to show updated data
                     }
                 },
@@ -111,4 +154,3 @@
         });
     });
 </script>
-

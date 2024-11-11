@@ -44,7 +44,7 @@ namespace TEST_MVC_CRM.Controllers
 
                 string ProductName = collection["ProductName"];
                 int CurrentStock = Convert.ToInt32(collection["CurrentStock"]);
-                
+
                 ProductModel product = new ProductModel();
                 product.ProductName = ProductName;
                 product.CurrentStock = CurrentStock;
@@ -63,6 +63,13 @@ namespace TEST_MVC_CRM.Controllers
         public ActionResult Edit(int id)
         {
             return View();
+        }
+
+        // GET: Product / GetProductById
+        public ActionResult GetProductById(Guid id)
+        {
+            var product = _productService.GetProductByIdAsync(id);
+            return Json(product, JsonRequestBehavior.AllowGet);
         }
 
         // POST: Product/Edit/5
